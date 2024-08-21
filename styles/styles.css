@@ -50,7 +50,7 @@ body {
 .prefix {
     color: #ECDFCC; /* Set the text color to match the input's text color */
     font-size: 3em; /* Adjust font size to match the input text size */
-    margin-right: 0.5em; /* Space between the prefix and the input */
+    margin-right: 1em; /* Increased margin to move the # further to the right */
 }
 
 .input-wrapper input {
