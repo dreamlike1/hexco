@@ -10,7 +10,9 @@ function setRandomColor() {
         return `#${randomColor.padStart(6, '0')}`;
     }
 
-    leftSquare.style.backgroundColor = getRandomHexColor();
+    const randomColor = getRandomHexColor().toUpperCase();
+    leftSquare.style.backgroundColor = randomColor;
+    return randomColor; // Return the color to be used in match.js
 }
 
 // Export function for use in main.js
