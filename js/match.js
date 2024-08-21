@@ -100,8 +100,3 @@ function resetGame() {
     // Load a new random color for the left square
     setRandomColor();
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    setupMatchButton();
-    setRandomColor(); // Initialize the left square color
-});
