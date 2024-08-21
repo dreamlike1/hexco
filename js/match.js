@@ -4,6 +4,8 @@ const maxTries = 5; // Maximum number of tries
 const messageElement = document.getElementById('match-message'); // Message element
 let easyMode = false; // Track if the game is in easy mode
 
+const easyColors = ['#0000FF', '#00FF00', '#FF0000', '#FFFF00', '#00FFFF', '#FF00FF']; // Simplified colors
+
 function setupMatchButton() {
     const matchButton = document.getElementById('match-button');
     if (!matchButton) {
@@ -105,13 +107,13 @@ function provideColorFeedback(inputColor, targetColor) {
 
 // Set the color of the left square based on the mode
 function setRandomColor() {
-    const colors = '0123456789ABCDEF';
     let color;
     if (easyMode) {
-        // Generate "easier" colors
-        color = '#' + Array.from({ length: 6 }, () => colors[Math.floor(Math.random() * 6)]).join('');
+        // Use predefined easy colors
+        color = easyColors[Math.floor(Math.random() * easyColors.length)];
     } else {
         // Standard color generation
+        const colors = '0123456789ABCDEF';
         color = '#' + Array.from({ length: 6 }, () => colors[Math.floor(Math.random() * 16)]).join('');
     }
     leftColor = color;
