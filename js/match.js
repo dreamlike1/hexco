@@ -1,3 +1,4 @@
+let leftColor = ''; // Holds the color of the left square
 let tries = 0; // Counter for the number of tries
 const maxTries = 5; // Maximum number of tries
 const messageElement = document.getElementById('match-message'); // Message element
@@ -17,19 +18,23 @@ function setupMatchButton() {
             return;
         }
         
-        const userColor = colorInput.value.trim();
+        let userColor = colorInput.value.trim();
+        if (userColor.startsWith('#')) {
+            userColor = userColor.slice(1);
+        }
+        
         if (!/^[0-9A-Fa-f]{6}$/.test(userColor)) {
             alert('Please enter a valid HEX color code.');
             return;
         }
 
+        userColor = userColor.toUpperCase();
         // Update history
         historyList.push(userColor);
         updateHistoryDisplay();
 
         // Check if the user's color matches the left square's color
-        const leftColor = document.getElementById('left-square').style.backgroundColor.slice(1).toUpperCase();
-        if (userColor.toUpperCase() === leftColor) {
+        if (userColor === leftColor.toUpperCase()) {
             messageElement.textContent = `${userColor} is a match!`;
             resetGame(); // Reset the game after a match
         } else {
@@ -47,17 +52,19 @@ function setupMatchButton() {
 
 // Provide color feedback based on proximity to the correct color
 function provideColorFeedback(inputColor, targetColor) {
-    const inputColorArray = inputColor.match(/.{1,2}/g).map(hex => parseInt(hex, 16));
-    const targetColorArray = targetColor.match(/.{1,2}/g).map(hex => parseInt(hex, 16));
+    const inputColorArray = inputColor.match(/.{1,2}/g);
+    const targetColorArray = targetColor.match(/.{1,2}/g);
 
     let colorDistance = 0;
     let colorFeedback = '';
 
     inputColorArray.forEach((value, index) => {
-        const diff = Math.abs(value - targetColorArray[index]);
+        const inputValue = parseInt(value, 16);
+        const targetValue = parseInt(targetColorArray[index], 16);
+        const diff = Math.abs(inputValue - targetValue);
         colorDistance += diff;
         const color = diff === 0 ? 'green' : (diff < 32 ? 'yellow' : 'orange');
-        colorFeedback += `<span style="color: ${color};">${inputColor[index * 2]}${inputColor[index * 2 + 1]}</span>`;
+        colorFeedback += `<span style="color: ${color};">${value}</span>`;
     });
 
     messageElement.innerHTML += `<br>${colorFeedback}`;
@@ -72,9 +79,8 @@ function setInputColorFeedback(colorDistance) {
         return;
     }
 
-    const colorIntensity = Math.min((colorDistance / 3) * 5, 255); // Scale the distance to color intensity
-    const feedbackColor = `rgb(${colorIntensity}, ${255 - colorIntensity}, 0)`; // Yellow to green gradient
-
+    // Color feedback is not in RGB but a simple HEX feedback is set.
+    const feedbackColor = colorDistance < 32 ? '#00FF00' : (colorDistance < 64 ? '#FFFF00' : '#FF9900');
     colorInput.style.backgroundColor = feedbackColor;
 }
 
@@ -82,7 +88,7 @@ function setInputColorFeedback(colorDistance) {
 function updateHistoryDisplay() {
     const historyElement = document.createElement('div');
     historyElement.classList.add('history');
-    historyElement.innerHTML = `<strong>Tries:</strong> ${historyList.join(', ')}`;
+    historyElement.innerHTML = `<strong>Tries:</strong> ${historyList.map(color => `#${color}`).join(', ')}`;
     if (messageElement.nextSibling) {
         messageElement.parentNode.insertBefore(historyElement, messageElement.nextSibling);
     } else {
