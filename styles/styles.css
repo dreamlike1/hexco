@@ -123,4 +123,24 @@ body {
 
     .squares {
         gap: 24px; /* Adjusted for better spacing */
-        margin-bottom: 24p
+        margin-bottom: 24px; /* Adjusted margin */
+    }
+
+    .square {
+        width: 120px; /* Further adjusted size for mobile */
+        height: 120px; /* Further adjusted size for mobile */
+    }
+
+    .input-wrapper input {
+        width: 85%; /* Adjust width to fit smaller screens and ensure no text cutoff */
+        font-size: 1.5em; /* Adjust font size for mobile */
+        height: 2.5em; /* Adjust height for mobile */
+    }
+
+    #match-button {
+        font-size: 1.5em; /* Adjust button font size for mobile */
+        width: 2.5em; /* Adjust width for mobile */
+        height: 2.5em; /* Adjust height for mobile */
+        margin-left: 5px; /* Adjust margin for mobile */
+    }
+}
