@@ -44,6 +44,16 @@ body {
     padding: 12px 24px; /* Increased padding for larger input box */
     width: 400px; /* 60% larger than 250px */
     font-family: Menlo, monospace;
+    border: 1px solid #697565; /* Border color */
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+}
+
+/* Override Fomantic UI focus styles */
+.ui.input input:focus {
+    background-color: #3C3D37; /* Keep the background color the same */
+    border: 1px solid #697565; /* Keep the border color the same */
+    outline: none; /* Remove default focus outline */
+    box-shadow: none; /* Remove default focus box-shadow */
 }
 
 /* Responsive adjustments for smaller screens */
