@@ -9,41 +9,57 @@ function setupMatchButton() {
         console.error('Match button not found.');
         return;
     }
-    
-    matchButton.addEventListener('click', () => {
-        const colorInput = document.getElementById('color-input');
-        if (!colorInput) {
-            console.error('Color input not found.');
-            return;
-        }
-        
-        let userColor = colorInput.value.trim();
-        if (userColor.startsWith('#')) {
-            userColor = userColor.slice(1);
-        }
-        
-        if (!/^[0-9A-Fa-f]{6}$/.test(userColor)) {
-            alert('Please enter a valid HEX color code.');
-            return;
-        }
 
-        userColor = userColor.toUpperCase();
+    // Event listener for match button
+    matchButton.addEventListener('click', handleMatch);
 
-        // Check if the user's color matches the left square's color
-        if (userColor === leftColor.substring(1).toUpperCase()) {
-            messageElement.innerHTML = `<span style="color: green;">#${userColor}</span> is a match!`;
-            resetGame(); // Reset the game after a match
-        } else {
-            tries++;
-            if (tries >= maxTries) {
-                messageElement.textContent = `No more tries left! The correct color was ${leftColor}.`;
-                resetGame(); // Reset the game after max tries
-            } else {
-                messageElement.innerHTML = `#${userColor} - ${maxTries - tries} tries left`;
-                provideColorFeedback(userColor, leftColor.substring(1)); // Remove '#' for comparison
+    // Event listener for Enter key press in color input
+    const colorInput = document.getElementById('color-input');
+    if (colorInput) {
+        colorInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent form submission if inside a form
+                handleMatch(); // Trigger the match logic
             }
+        });
+    } else {
+        console.error('Color input not found.');
+    }
+}
+
+function handleMatch() {
+    const colorInput = document.getElementById('color-input');
+    if (!colorInput) {
+        console.error('Color input not found.');
+        return;
+    }
+    
+    let userColor = colorInput.value.trim();
+    if (userColor.startsWith('#')) {
+        userColor = userColor.slice(1);
+    }
+    
+    if (!/^[0-9A-Fa-f]{6}$/.test(userColor)) {
+        alert('Please enter a valid HEX color code.');
+        return;
+    }
+
+    userColor = userColor.toUpperCase();
+
+    // Check if the user's color matches the left square's color
+    if (userColor === leftColor.substring(1).toUpperCase()) {
+        messageElement.innerHTML = `<span style="color: green;">#${userColor}</span> is a match!`;
+        resetGame(); // Reset the game after a match
+    } else {
+        tries++;
+        if (tries >= maxTries) {
+            messageElement.textContent = `No more tries left! The correct color was ${leftColor}.`;
+            resetGame(); // Reset the game after max tries
+        } else {
+            messageElement.innerHTML = `#${userColor} - ${maxTries - tries} tries left`;
+            provideColorFeedback(userColor, leftColor.substring(1)); // Remove '#' for comparison
         }
-    });
+    }
 }
 
 // Provide color feedback based on proximity to the correct color
