@@ -8,13 +8,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const matchButton = document.getElementById('match-button');
         const colorInput = document.getElementById('color-input');
         const matchMessage = document.getElementById('match-message');
-        const historyContainer = document.createElement('div');
-        historyContainer.className = 'history';
-        document.querySelector('.container').insertBefore(historyContainer, colorInput.parentElement);
 
-        if (!matchButton || !colorInput || !matchMessage || !historyContainer) {
+        if (!matchButton || !colorInput || !matchMessage) {
             console.error('Elements not found.');
             return;
+        }
+
+        // Create history container and append it to the container
+        let historyContainer = document.querySelector('.history');
+        if (!historyContainer) {
+            historyContainer = document.createElement('div');
+            historyContainer.className = 'history';
+            const container = document.querySelector('.container');
+            if (container) {
+                container.insertBefore(historyContainer, document.querySelector('.input-container'));
+            } else {
+                console.error('Container element not found.');
+                return;
+            }
         }
 
         matchButton.addEventListener('click', () => {
