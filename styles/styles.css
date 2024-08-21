@@ -52,7 +52,7 @@ body {
     color: #ECDFCC; /* Set the text color to match the input's text color */
     font-size: 3em; /* Adjust font size to match the input text size */
     position: absolute;
-    left: 1em; /* Position prefix close to the start of the text */
+    left: 1.25em; /* Move the prefix closer to the text */
     top: 50%; /* Center vertically within the input */
     transform: translateY(-50%); /* Adjust for vertical centering */
     pointer-events: none; /* Ensure the prefix doesn't block user interaction with the input */
@@ -62,11 +62,11 @@ body {
     color: #ECDFCC; /* Set the text color to match the body's text color */
     background-color: #3C3D37;
     border-radius: 50px; /* Increased border-radius for more rounded corners */
-    padding: 0.5em 1em 0.5em 2.5em; /* Adjust left padding to accommodate the prefix */
+    padding: 0.5em 1em 0.5em 2em; /* Adjust left padding to accommodate the prefix while keeping it close */
     width: 8em; /* 20% less than 10em */
     font-family: Menlo, monospace;
     font-size: 3em; /* Adjusted font size for better readability */
-    text-align: center; /* Center the text horizontally */
+    text-align: left; /* Align text to the left */
     text-transform: uppercase; /* Transform text to uppercase */
     box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
     border: none; /* Remove border */
@@ -101,7 +101,7 @@ body {
 
     .input-wrapper input {
         width: 90%; /* Adjust width to fit smaller screens */
-        padding: 0.5em 1em 0.5em 2.5em; /* Adjust padding for mobile */
+        padding: 0.5em 1em 0.5em 2em; /* Adjust padding for mobile */
         font-size: 3em; /* Ensure font size is appropriate for mobile */
     }
 }
