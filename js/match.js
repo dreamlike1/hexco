@@ -1,14 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let leftColor = ''; // Scope this to avoid redeclaration errors
-    let tries = 0;
+    let leftColor = ''; // Variable to store the left square color
+    let tries = 0; // Number of tries
+    const maxTries = 5; // Maximum number of tries
 
-    setupMatchButton();
-
+    // Function to set up the match button
     function setupMatchButton() {
         const matchButton = document.getElementById('match-button');
         const colorInput = document.getElementById('color-input');
         const matchMessage = document.getElementById('match-message');
-        const historyContainer = document.querySelector('.history');
+        const historyContainer = document.createElement('div');
+        historyContainer.className = 'history';
+        document.querySelector('.container').insertBefore(historyContainer, colorInput.parentElement);
 
         if (!matchButton || !colorInput || !matchMessage || !historyContainer) {
             console.error('Elements not found.');
@@ -25,7 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const userColor = `#${formattedInputValue}`;
-            const rightSquare = document.getElementById('right-square').style.backgroundColor;
+            const rightSquareColor = window.getComputedStyle(document.getElementById('right-square')).backgroundColor;
+            const rightSquareHex = rgbToHex(rightSquareColor);
 
             if (userColor.toUpperCase() === leftColor) {
                 matchMessage.textContent = `${formattedInputValue} is a match!`;
@@ -34,23 +37,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             tries++;
-            const remainingTries = 5 - tries;
+            const remainingTries = maxTries - tries;
 
-            if (tries >= 5) {
+            if (tries >= maxTries) {
                 matchMessage.textContent = `No more tries left. Resetting...`;
                 historyContainer.innerHTML += `<div style="color: red;">${formattedInputValue} - No more tries left.</div>`;
                 resetGame();
                 return;
             }
 
-            matchMessage.textContent = `${formattedInputValue} - ${remainingTries}/5 tries remaining.`;
-            historyContainer.innerHTML += `<div style="color: red;">${formattedInputValue} - ${remainingTries}/5 tries remaining.</div>`;
+            matchMessage.textContent = `${formattedInputValue} - ${remainingTries}/${maxTries} tries remaining.`;
+            historyContainer.innerHTML += `<div style="color: red;">${formattedInputValue} - ${remainingTries}/${maxTries} tries remaining.</div>`;
 
             // Color feedback for the input
-            colorInput.style.color = getColorFeedback(userColor, rightSquare);
-
-            // Update history
-            historyContainer.innerHTML += `<div>${formattedInputValue} - ${getColorFeedback(userColor, rightSquare)}</div>`;
+            colorInput.style.color = getColorFeedback(userColor, rightSquareHex);
         });
 
         function getColorFeedback(userColor, targetColor) {
@@ -76,6 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
             return { r, g, b };
         }
 
+        function rgbToHex(rgb) {
+            const [r, g, b] = rgb.match(/\d+/g).map(Number);
+            return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}`;
+        }
+
         function resetGame() {
             tries = 0;
             colorInput.value = '';
@@ -83,22 +88,24 @@ document.addEventListener('DOMContentLoaded', () => {
             historyContainer.innerHTML = '';
             setRandomColor();
         }
-    }
 
-    function setRandomColor() {
-        const leftSquare = document.getElementById('left-square');
-        if (!leftSquare) return;
+        function setRandomColor() {
+            const leftSquare = document.getElementById('left-square');
+            if (!leftSquare) return;
 
-        leftColor = getRandomColor();
-        leftSquare.style.backgroundColor = leftColor;
-    }
-
-    function getRandomColor() {
-        const letters = '0123456789ABCDEF';
-        let color = '#';
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
+            leftColor = getRandomColor();
+            leftSquare.style.backgroundColor = leftColor;
         }
-        return color;
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
     }
+
+    setupMatchButton(); // Call the function to set up the button
 });
