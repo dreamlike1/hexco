@@ -14,6 +14,19 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error loading randomColor.js:', error);
         });
 
+    // Load the match.js script
+    loadScript('js/match.js')
+        .then(() => {
+            if (typeof setupMatchButton === 'function') {
+                setupMatchButton(); // Set up the match button
+            } else {
+                console.error('setupMatchButton function is not available.');
+            }
+        })
+        .catch(error => {
+            console.error('Error loading match.js:', error);
+        });
+
     setupColorChange(); // Set up the color input change handler
 });
 
