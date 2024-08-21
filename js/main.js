@@ -4,30 +4,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load the randomColor.js script
     loadScript('js/randomColor.js')
         .then(() => {
+            // Load the match.js script after randomColor.js
+            return loadScript('js/match.js');
+        })
+        .then(() => {
+            // Now both scripts are loaded, initialize game
             if (typeof setRandomColor === 'function') {
                 setRandomColor(); // Set a random color for the left square
             } else {
                 console.error('setRandomColor function is not available.');
             }
-        })
-        .catch(error => {
-            console.error('Error loading randomColor.js:', error);
-        });
-
-    // Load the match.js script
-    loadScript('js/match.js')
-        .then(() => {
             if (typeof setupMatchButton === 'function') {
                 setupMatchButton(); // Set up the match button
             } else {
                 console.error('setupMatchButton function is not available.');
             }
+            setupColorChange(); // Set up the color input change handler
         })
         .catch(error => {
-            console.error('Error loading match.js:', error);
+            console.error('Error loading scripts:', error);
         });
-
-    setupColorChange(); // Set up the color input change handler
 });
 
 function setupColorChange() {
