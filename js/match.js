@@ -1,76 +1,113 @@
-document.addEventListener('DOMContentLoaded', () => {
+let leftColor = ''; // Holds the color of the left square
+let tries = 0; // Counter for the number of tries
+const maxTries = 5; // Maximum number of tries
+const messageElement = document.getElementById('match-message'); // Message element
+const historyList = []; // Array to store history of tries
+
+function setupMatchButton() {
     const matchButton = document.getElementById('match-button');
-    const colorInput = document.getElementById('color-input');
-    const leftSquare = document.getElementById('left-square');
-    const matchMessage = document.getElementById('match-message');
-    let tries = 0;
-    const maxTries = 5;
-
-    // Function to convert RGB to HEX
-    const rgbToHex = (rgb) => {
-        const [r, g, b] = rgb.match(/\d+/g).map(Number);
-        return "#" + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('');
-    };
-
-    // Function to initialize the left square color
-    function setRandomColor() {
-        const randomColor = `#${Math.floor(Math.random() * 16777215).toString(16).toUpperCase().padStart(6, '0')}`;
-        leftSquare.style.backgroundColor = randomColor;
-        leftSquare.dataset.color = randomColor.slice(1); // Store the color value without #
+    if (!matchButton) {
+        console.error('Match button not found.');
+        return;
     }
-
-    // Initialize the left square color
-    setRandomColor();
-
-    // Function to provide feedback on the input
-    function provideFeedback(inputColor, targetColor) {
-        const feedback = [];
-
-        for (let i = 0; i < 6; i++) {
-            const inputChar = inputColor[i] || '0';
-            const targetChar = targetColor[i] || '0';
-
-            if (inputChar === targetChar) {
-                feedback.push(`<span style="color: green;">${inputChar}</span>`);
-            } else if (targetColor.includes(inputChar)) {
-                feedback.push(`<span style="color: orange;">${inputChar}</span>`);
-            } else {
-                feedback.push(`<span style="color: red;">${inputChar}</span>`);
-            }
-        }
-
-        return feedback.join('');
-    }
-
+    
     matchButton.addEventListener('click', () => {
-        if (tries >= maxTries) {
-            matchMessage.textContent = "You've reached the maximum number of tries. Resetting...";
-            tries = 0;
-            setRandomColor();
-            colorInput.value = '';
-            matchMessage.innerHTML = '';
+        const colorInput = document.getElementById('color-input');
+        if (!colorInput) {
+            console.error('Color input not found.');
+            return;
+        }
+        
+        const userColor = colorInput.value.trim();
+        if (!/^[0-9A-Fa-f]{6}$/.test(userColor)) {
+            alert('Please enter a valid HEX color code.');
             return;
         }
 
-        // Get the HEX color from the left square
-        const leftColorHex = leftSquare.dataset.color.toUpperCase();
-        // Get the value from the input
-        let inputHexColor = colorInput.value.trim().toUpperCase();
+        // Update history
+        historyList.push(userColor);
+        updateHistoryDisplay();
 
-        // Validate input
-        if (/^[0-9A-Fa-f]{6}$/.test(inputHexColor)) {
-            if (inputHexColor === leftColorHex) {
-                matchMessage.textContent = `${inputHexColor} is a match!`;
-                matchMessage.style.color = '#ECDFCC'; // Success color
-                tries = 0; // Reset tries on successful match
-                setRandomColor(); // Set a new color
-                colorInput.value = '';
-            } else {
-                tries++;
-                matchMessage.innerHTML = `${inputHexColor} - ${tries}/${maxTries} tries left<br>${provideFeedback(inputHexColor, leftColorHex)}`;
-            }
+        // Check if the user's color matches the left square's color
+        if (userColor.toUpperCase() === leftColor.toUpperCase()) {
+            messageElement.textContent = `${userColor} is a match!`;
+            resetGame(); // Reset the game after a match
         } else {
-            matchMessage.textContent = 'Invalid HEX code. Please enter a valid 6-digit HEX color code.';
+            tries++;
+            if (tries >= maxTries) {
+                messageElement.textContent = `No more tries left! The correct color was ${leftColor}.`;
+                resetGame(); // Reset the game after max tries
+            } else {
+                messageElement.textContent = `${userColor} - ${maxTries - tries} tries left`;
+                provideColorFeedback(userColor, leftColor);
+            }
         }
     });
+}
+
+// Provide color feedback based on proximity to the correct color
+function provideColorFeedback(inputColor, targetColor) {
+    const inputColorArray = inputColor.match(/.{1,2}/g).map(hex => parseInt(hex, 16));
+    const targetColorArray = targetColor.match(/.{1,2}/g).map(hex => parseInt(hex, 16));
+
+    let colorDistance = 0;
+    let colorFeedback = '';
+
+    inputColorArray.forEach((value, index) => {
+        const diff = Math.abs(value - targetColorArray[index]);
+        colorDistance += diff;
+        const color = diff === 0 ? 'green' : (diff < 32 ? 'yellow' : 'orange');
+        colorFeedback += `<span style="color: ${color};">${inputColor[index * 2]}${inputColor[index * 2 + 1]}</span>`;
+    });
+
+    messageElement.innerHTML += `<br>${colorFeedback}`;
+    setInputColorFeedback(colorDistance);
+}
+
+// Set the color of the input field based on distance from the target color
+function setInputColorFeedback(colorDistance) {
+    const colorInput = document.getElementById('color-input');
+    if (!colorInput) {
+        console.error('Color input not found.');
+        return;
+    }
+
+    const colorIntensity = Math.min((colorDistance / 3) * 5, 255); // Scale the distance to color intensity
+    const feedbackColor = `rgb(${colorIntensity}, ${255 - colorIntensity}, 0)`; // Yellow to green gradient
+
+    colorInput.style.backgroundColor = feedbackColor;
+}
+
+// Update the display of the history of tries
+function updateHistoryDisplay() {
+    const historyElement = document.createElement('div');
+    historyElement.classList.add('history');
+    historyElement.innerHTML = `<strong>Tries:</strong> ${historyList.join(', ')}`;
+    if (messageElement.nextSibling) {
+        messageElement.parentNode.insertBefore(historyElement, messageElement.nextSibling);
+    } else {
+        messageElement.parentNode.appendChild(historyElement);
+    }
+}
+
+// Reset the game
+function resetGame() {
+    tries = 0;
+    historyList.length = 0; // Clear the history
+    if (messageElement.nextSibling) {
+        messageElement.nextSibling.remove(); // Remove history display
+    }
+    // Load a new random color for the left square
+    setRandomColor();
+}
+
+function setRandomColor() {
+    const colors = '0123456789ABCDEF';
+    leftColor = '#' + Array.from({ length: 6 }, () => colors[Math.floor(Math.random() * 16)]).join('');
+    document.getElementById('left-square').style.backgroundColor = leftColor;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    setupMatchButton();
+    setRandomColor(); // Initialize the left square color
 });
