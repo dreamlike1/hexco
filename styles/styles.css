@@ -37,7 +37,23 @@ body {
     justify-content: center;
 }
 
-.ui.input input {
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #3C3D37;
+    border-radius: 50px; /* Increased border-radius for more rounded corners */
+    padding: 0.5em; /* Adjust padding to ensure proper spacing */
+    width: fit-content;
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+}
+
+.prefix {
+    color: #ECDFCC; /* Set the text color to match the input's text color */
+    font-size: 3em; /* Adjust font size to match the input text size */
+    margin-right: 0.5em; /* Space between the prefix and the input */
+}
+
+.input-wrapper input {
     color: #ECDFCC; /* Set the text color to match the body's text color */
     background-color: #3C3D37;
     border-radius: 50px; /* Increased border-radius for more rounded corners */
@@ -54,7 +70,7 @@ body {
 }
 
 /* Override Fomantic UI focus styles */
-.ui.input input:focus {
+.input-wrapper input:focus {
     background-color: #3C3D37; /* Keep the background color the same */
     color: #ECDFCC; /* Ensure text color remains consistent */
     border: none; /* Remove border */
@@ -78,7 +94,7 @@ body {
         height: 120px; /* Further adjusted size for mobile */
     }
 
-    .ui.input input {
+    .input-wrapper input {
         width: 90%; /* Adjust width to fit smaller screens */
         padding: 0.5em; /* Adjust padding for mobile */
         font-size: 3em; /* Ensure font size is appropriate for mobile */
