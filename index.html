@@ -12,18 +12,21 @@
 <body>
     <div class="container">
         <div class="squares">
-            <div class="square"></div>
-            <div class="square"></div>
+            <div class="square" id="left-square"></div>
+            <div class="square" id="right-square"></div>
         </div>
         <div class="input-container">
             <div class="input-wrapper">
                 <span class="prefix">#</span>
-                <input type="text" maxlength="6" placeholder="HEXCODE">
+                <input type="text" maxlength="6" placeholder="HEXCODE" id="color-input">
             </div>
         </div>
     </div>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Fomantic UI JS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.js"></script>
+    <!-- Custom JS -->
     <script src="js/main.js"></script>
 </body>
 </html>
