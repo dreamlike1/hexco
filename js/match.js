@@ -31,7 +31,7 @@ function setupMatchButton() {
 
         // Check if the user's color matches the left square's color
         if (userColor === leftColor.substring(1).toUpperCase()) {
-            messageElement.textContent = `#${userColor} is a match!`;
+            messageElement.innerHTML = `<span style="color: green;">#${userColor}</span> is a match!`;
             resetGame(); // Reset the game after a match
         } else {
             tries++;
@@ -39,7 +39,7 @@ function setupMatchButton() {
                 messageElement.textContent = `No more tries left! The correct color was ${leftColor}.`;
                 resetGame(); // Reset the game after max tries
             } else {
-                messageElement.textContent = `#${userColor} - ${maxTries - tries} tries left`;
+                messageElement.innerHTML = `#${userColor} - ${maxTries - tries} tries left`;
                 provideColorFeedback(userColor, leftColor.substring(1)); // Remove '#' for comparison
             }
         }
@@ -56,22 +56,20 @@ function provideColorFeedback(inputColor, targetColor) {
     inputColorArray.forEach((value, index) => {
         const inputValue = parseInt(value, 16);
         const targetValue = parseInt(targetColorArray[index], 16);
-        const diff = inputValue - targetValue;
+        const diff = Math.abs(inputValue - targetValue);
 
         let color;
-        let feedbackText;
         if (diff === 0) {
             color = 'green';
-            feedbackText = 'correct';
-        } else if (diff > 0) {
+        } else if (diff <= 15) { // Slightly higher or lower
             color = 'orange';
-            feedbackText = 'higher';
-        } else {
+        } else if (diff <= 30) { // Moderately higher or lower
             color = 'yellow';
-            feedbackText = 'lower';
+        } else { // Far off
+            color = 'red';
         }
 
-        colorFeedback += `<span style="color: ${color};">${value} (${feedbackText})</span> `;
+        colorFeedback += `<span style="color: ${color};">${value}</span>`;
     });
 
     messageElement.innerHTML += `<br>[${colorFeedback}]`;
