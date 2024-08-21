@@ -40,7 +40,7 @@ body {
 .ui.input input {
     color: #ECDFCC; /* Set the text color to match the body's text color */
     background-color: #3C3D37;
-    border-radius: 24px; /* Increased border-radius for larger input box */
+    border-radius: 50px; /* Increased border-radius for more rounded corners */
     padding: 0.5em; /* Adjust padding to ensure proper spacing */
     width: 8em; /* 20% less than 10em */
     font-family: Menlo, monospace;
