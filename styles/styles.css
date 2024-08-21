@@ -39,40 +39,39 @@ body {
 
 .input-wrapper {
     position: relative;
-    display: flex;
-    align-items: center;
+    display: inline-block; /* Changed from flex to inline-block */
     background-color: #3C3D37;
-    border-radius: 50px; /* Increased border-radius for more rounded corners */
-    padding: 0.5em; /* Adjust padding to ensure proper spacing */
+    border-radius: 50px;
     width: fit-content;
-    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+    box-sizing: border-box;
 }
 
 .input-wrapper input {
-    color: #ECDFCC; /* Set the text color to match the body's text color */
+    color: #ECDFCC;
     background-color: #3C3D37;
-    border-radius: 50px; /* Increased border-radius for more rounded corners */
-    padding: 0.5em 1em 0.5em 3em; /* Adjust left padding to accommodate the # symbol */
-    width: 7.5em; /* Slightly increased width for better text fit */
+    border-radius: 50px;
+    padding: 0; /* No padding inside the input field */
+    width: 7.5em; /* Adjust as needed */
     font-family: Menlo, monospace;
-    font-size: 3em; /* Adjusted font size for better readability */
+    font-size: 3em;
     text-align: center; /* Center text horizontally */
     box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
     border: none; /* Remove border */
     outline: none; /* Remove default focus outline */
     box-shadow: none; /* Remove default focus box-shadow */
     position: relative;
+    padding-left: 3em; /* Reserve space for the # symbol */
 }
 
 .input-wrapper input::before {
     content: "#";
-    color: #ECDFCC; /* Set the text color to match the input's text color */
-    font-size: 3em; /* Adjust font size to match the input text size */
+    color: #ECDFCC;
+    font-size: 3em;
     position: absolute;
-    left: 0.75em; /* Adjusted left position to align with the input padding */
-    top: 50%; /* Center vertically within the input */
-    transform: translateY(-50%); /* Adjust for vertical centering */
-    pointer-events: none; /* Ensure the prefix doesn't block user interaction with the input */
+    left: 0.5em; /* Adjust as needed to align with the text */
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
     z-index: 1; /* Ensure the # symbol appears above the text */
 }
 
@@ -103,7 +102,7 @@ body {
 
     .input-wrapper input {
         width: 85%; /* Adjust width to fit smaller screens and ensure no text cutoff */
-        padding: 0.5em 1em 0.5em 3em; /* Adjust padding for mobile */
-        font-size: 2em; /* Ensure font size is appropriate for mobile */
+        padding-left: 3em; /* Ensure space for the # symbol */
+        font-size: 2em; /* Adjust font size for mobile */
     }
 }
