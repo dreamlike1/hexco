@@ -55,45 +55,43 @@ function provideColorFeedback(inputColor, targetColor) {
     const inputColorArray = inputColor.match(/.{1,2}/g);
     const targetColorArray = targetColor.match(/.{1,2}/g);
 
-    let colorDistance = 0;
     let colorFeedback = '';
 
     inputColorArray.forEach((value, index) => {
         const inputValue = parseInt(value, 16);
         const targetValue = parseInt(targetColorArray[index], 16);
-        const diff = Math.abs(inputValue - targetValue);
-        colorDistance += diff;
-        const color = diff === 0 ? 'green' : (diff < 32 ? 'yellow' : 'orange');
-        colorFeedback += `<span style="color: ${color};">${value}</span>`;
+        const diff = inputValue - targetValue;
+
+        let color;
+        let feedbackText;
+        if (diff === 0) {
+            color = 'green';
+            feedbackText = 'correct';
+        } else if (diff > 0) {
+            color = 'orange';
+            feedbackText = 'higher';
+        } else {
+            color = 'yellow';
+            feedbackText = 'lower';
+        }
+
+        colorFeedback += `<span style="color: ${color};">${value} (${feedbackText})</span> `;
     });
 
-    messageElement.innerHTML += `<br>${colorFeedback}`;
-    setInputColorFeedback(colorDistance);
-}
-
-// Set the color of the input field based on distance from the target color
-function setInputColorFeedback(colorDistance) {
-    const colorInput = document.getElementById('color-input');
-    if (!colorInput) {
-        console.error('Color input not found.');
-        return;
-    }
-
-    // Color feedback is not in RGB but a simple HEX feedback is set.
-    const feedbackColor = colorDistance < 32 ? '#00FF00' : (colorDistance < 64 ? '#FFFF00' : '#FF9900');
-    colorInput.style.backgroundColor = feedbackColor;
+    messageElement.innerHTML += `<br>[${colorFeedback}]`;
 }
 
 // Update the display of the history of tries
 function updateHistoryDisplay() {
     const historyElement = document.createElement('div');
     historyElement.classList.add('history');
-    historyElement.innerHTML = `<strong>Tries:</strong> ${historyList.map(color => `#${color}`).join(', ')}`;
+    historyElement.innerHTML = historyList.map((color, index) => {
+        return `${index + 1}. [${color}] - ${tries}/${maxTries}`;
+    }).join('<br>');
     if (messageElement.nextSibling) {
-        messageElement.parentNode.insertBefore(historyElement, messageElement.nextSibling);
-    } else {
-        messageElement.parentNode.appendChild(historyElement);
+        messageElement.nextSibling.remove(); // Remove previous history display
     }
+    messageElement.parentNode.appendChild(historyElement);
 }
 
 // Reset the game
@@ -106,3 +104,14 @@ function resetGame() {
     // Load a new random color for the left square
     setRandomColor();
 }
+
+function setRandomColor() {
+    const colors = '0123456789ABCDEF';
+    leftColor = '#' + Array.from({ length: 6 }, () => colors[Math.floor(Math.random() * 16)]).join('');
+    document.getElementById('left-square').style.backgroundColor = leftColor;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    setupMatchButton();
+    setRandomColor(); // Initialize the left square color
+});
