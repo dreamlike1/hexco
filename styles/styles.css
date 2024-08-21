@@ -39,7 +39,7 @@ body {
 
 .input-wrapper {
     position: relative;
-    display: inline-block; /* Changed from flex to inline-block */
+    display: inline-block;
     background-color: #3C3D37;
     border-radius: 50px;
     width: fit-content;
@@ -50,12 +50,12 @@ body {
     color: #ECDFCC;
     background-color: #3C3D37;
     border-radius: 50px;
-    padding: 0.5em 1em 0.5em 3em; /* Increased left padding to ensure space for # symbol */
+    padding: 0.5em 1em 0.5em 1em; /* Padding without extra space on the left */
     width: 7.5em; /* Adjust width as needed */
     font-family: Menlo, monospace;
     font-size: 3em;
     text-align: center; /* Center text horizontally */
-    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+    box-sizing: border-box;
     border: none; /* Remove border */
     outline: none; /* Remove default focus outline */
     box-shadow: none; /* Remove default focus box-shadow */
@@ -67,7 +67,7 @@ body {
     color: #ECDFCC;
     font-size: 3em;
     position: absolute;
-    left: 0.2em; /* Adjust this value to move the # symbol more to the left */
+    left: 0; /* Position flush against the left edge */
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
