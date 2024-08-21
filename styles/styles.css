@@ -41,10 +41,10 @@ body {
     color: #ECDFCC; /* Set the text color to match the body's text color */
     background-color: #3C3D37;
     border-radius: 24px; /* Increased border-radius for larger input box */
-    padding: 0.2em 0.4em; /* Adjust padding for the new size */
+    padding: 0.5em; /* Adjust padding to ensure proper spacing */
     width: 8em; /* 20% less than 10em */
     font-family: Menlo, monospace;
-    font-size: 10em; /* Increase font size to 10em */
+    font-size: 3em; /* Adjusted font size for better readability */
     text-align: center; /* Center the text horizontally */
     text-transform: uppercase; /* Transform text to uppercase */
     box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
@@ -80,7 +80,7 @@ body {
 
     .ui.input input {
         width: 90%; /* Adjust width to fit smaller screens */
-        padding: 0.2em 0.4em; /* Adjust padding for mobile */
-        font-size: 10em; /* Ensure increased font size is maintained */
+        padding: 0.5em; /* Adjust padding for mobile */
+        font-size: 3em; /* Ensure font size is appropriate for mobile */
     }
 }
