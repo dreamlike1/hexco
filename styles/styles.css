@@ -38,6 +38,7 @@ body {
 }
 
 .input-wrapper {
+    position: relative;
     display: flex;
     align-items: center;
     background-color: #3C3D37;
@@ -50,14 +51,16 @@ body {
 .prefix {
     color: #ECDFCC; /* Set the text color to match the input's text color */
     font-size: 3em; /* Adjust font size to match the input text size */
-    margin-right: 1em; /* Increased margin to move the # further to the right */
+    position: absolute;
+    left: 0.5em; /* Adjust positioning from the left */
+    pointer-events: none; /* Ensure the prefix doesn't block user interaction with the input */
 }
 
 .input-wrapper input {
     color: #ECDFCC; /* Set the text color to match the body's text color */
     background-color: #3C3D37;
     border-radius: 50px; /* Increased border-radius for more rounded corners */
-    padding: 0.5em; /* Adjust padding to ensure proper spacing */
+    padding: 0.5em 1em 0.5em 2.5em; /* Add extra padding on the left to accommodate the prefix */
     width: 8em; /* 20% less than 10em */
     font-family: Menlo, monospace;
     font-size: 3em; /* Adjusted font size for better readability */
@@ -96,7 +99,7 @@ body {
 
     .input-wrapper input {
         width: 90%; /* Adjust width to fit smaller screens */
-        padding: 0.5em; /* Adjust padding for mobile */
+        padding: 0.5em 1em; /* Adjust padding for mobile */
         font-size: 3em; /* Ensure font size is appropriate for mobile */
     }
 }
