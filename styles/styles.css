@@ -89,6 +89,7 @@ body {
     justify-content: center;
     cursor: pointer;
     margin-left: 10px; /* 10px space between the button and the input field */
+    line-height: 1; /* Center the arrow vertically */
     transform: rotate(90deg); /* Rotate the arrow to point right */
 }
 
