@@ -5,26 +5,29 @@ const messageElement = document.getElementById('match-message'); // Message elem
 let easyMode = false; // Track if the game is in easy mode
 
 const easyColors = [
-    '#000000', // Black
-    '#FFFFFF', // White
     '#FF0000', // Red
-    '#00FF00', // Green
+    '#00FF00', // Lime
     '#0000FF', // Blue
     '#FFFF00', // Yellow
     '#FF00FF', // Magenta
     '#00FFFF', // Cyan
+    '#FFFFFF', // White
+    '#000000', // Black
     '#C0C0C0', // Silver
     '#808080', // Gray
     '#800000', // Maroon
     '#808000', // Olive
-    '#008000', // Dark Green
+    '#008000', // Green
     '#800080', // Purple
     '#008080', // Teal
-    '#FF6347', // Tomato
-    '#FF1493', // Deep Pink
+    '#FFC0CB', // Pink
     '#FFD700', // Gold
+    '#FF4500', // Orange Red
     '#ADFF2F', // Green Yellow
-    '#FF4500'  // Orange Red
+    '#A52A2A', // Brown
+    '#D3D3D3', // Light Gray
+    '#FFA07A', // Light Salmon
+    '#F0E68C'  // Khaki
 ];
 
 function setupMatchButton() {
