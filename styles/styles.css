@@ -104,19 +104,12 @@ body {
     margin-bottom: 20px; /* Space between message and input */
 }
 
-/* Color feedback */
-.color-feedback {
-    margin-top: 20px;
-    font-size: 1.5em;
-    text-align: center;
-}
-
-.color-feedback span {
-    display: inline-block;
-    margin: 0 2px;
-    padding: 2px 4px;
-    border-radius: 4px;
+/* New styles for history display */
+.history {
+    color: #ECDFCC;
     font-size: 1.2em;
+    margin-top: 20px; /* Space between message and history */
+    text-align: center; /* Center align history text */
 }
 
 /* Responsive adjustments for smaller screens */
