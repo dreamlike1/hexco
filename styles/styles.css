@@ -13,103 +13,103 @@ body {
 
 .container {
     text-align: center;
-    width: 60%; /* 60% of the viewport width */
-    max-width: 960px; /* Increased max-width for larger content */
+    width: 60%;
+    max-width: 960px;
 }
 
 .squares {
     display: flex;
     justify-content: center;
-    gap: 32px; /* Increased gap for larger size */
-    margin-bottom: 32px; /* Increased margin for larger size */
+    gap: 32px;
+    margin-bottom: 32px;
 }
 
 .square {
     background-color: #3C3D37;
-    width: 320px; /* 60% larger than 100px */
-    height: 320px; /* 60% larger than 100px */
-    border-radius: 12px; /* Less rounded corners */
+    width: 320px;
+    height: 320px;
+    border-radius: 12px;
     display: inline-block;
 }
 
 .input-container {
     display: flex;
-    align-items: center; /* Align items vertically */
-    justify-content: center; /* Center items horizontally */
+    align-items: center;
+    justify-content: center;
 }
 
 .input-wrapper {
-    display: flex; /* Use flex to align button and input field properly */
-    align-items: center; /* Align items vertically */
+    display: flex;
+    align-items: center;
     background-color: #3C3D37;
-    border-radius: 12px; /* Less rounded edges */
+    border-radius: 12px;
 }
 
 .input-wrapper input {
     color: #ECDFCC;
     background-color: #3C3D37;
-    border-radius: 12px; /* Rounded edges */
-    padding: 0 1em; /* Adjust padding for horizontal spacing */
-    width: 7em; /* Adjust width to fit the button */
-    height: 2.8em; /* Adjusted height to match button height */
+    border-radius: 12px;
+    padding: 0 1em;
+    width: 7em;
+    height: 2.8em;
     font-family: Menlo, monospace;
-    font-size: 1.8em; /* Adjust font size to fit the new height */
-    text-align: center; /* Center text horizontally */
-    text-transform: uppercase; /* Transform text to uppercase */
+    font-size: 1.8em;
+    text-align: center;
+    text-transform: uppercase;
     box-sizing: border-box;
-    border: none; /* Remove border */
-    outline: none; /* Remove default focus outline */
-    box-shadow: none; /* Remove default focus box-shadow */
+    border: none;
+    outline: none;
+    box-shadow: none;
     position: relative;
 }
 
 .input-wrapper input::before {
     content: "#";
     color: #ECDFCC;
-    font-size: 1.8em; /* Adjust font size for the # symbol */
+    font-size: 1.8em;
     position: absolute;
-    left: 0; /* Position flush against the left edge */
+    left: 0;
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
-    z-index: 1; /* Ensure the # symbol appears above the text */
+    z-index: 1;
 }
 
 #match-button {
     background-color: #3C3D37;
     color: #ECDFCC;
     border: none;
-    border-radius: 12px; /* Rounded edges to match the input */
-    width: 2.8em; /* Adjust width to match input height */
-    height: 2.8em; /* Match height with input field */
+    border-radius: 12px;
+    width: 2.8em;
+    height: 2.8em;
     font-family: Menlo, monospace;
-    font-size: 1.8em; /* Font size for the arrow */
+    font-size: 1.8em;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    margin-left: 10px; /* 10px space between the button and the input field */
-    line-height: 1; /* Center the arrow vertically */
-    transform: rotate(90deg); /* Rotate the arrow to point right */
+    margin-left: 10px;
+    line-height: 1;
+    transform: rotate(90deg); /* Arrow pointing right */
 }
 
 #match-button:hover {
-    background-color: #2c2d27; /* Darker background on hover */
+    background-color: #2c2d27;
 }
 
 /* New styles for message */
 .message {
     color: #ECDFCC;
     font-size: 1.5em;
-    margin-bottom: 20px; /* Space between message and input */
+    margin-bottom: 20px;
 }
 
 /* New styles for history display */
 .history {
     color: #ECDFCC;
     font-size: 1.2em;
-    margin-top: 20px; /* Space between message and history */
-    text-align: center; /* Center align history text */
+    margin-top: 20px;
+    text-align: center;
 }
 
 /* Responsive adjustments for smaller screens */
@@ -120,25 +120,25 @@ body {
     }
 
     .squares {
-        gap: 24px; /* Adjusted for better spacing */
-        margin-bottom: 24px; /* Adjusted margin */
+        gap: 24px;
+        margin-bottom: 24px;
     }
 
     .square {
-        width: 120px; /* Further adjusted size for mobile */
-        height: 120px; /* Further adjusted size for mobile */
+        width: 120px;
+        height: 120px;
     }
 
     .input-wrapper input {
-        width: 85%; /* Adjust width to fit smaller screens and ensure no text cutoff */
-        font-size: 1.5em; /* Adjust font size for mobile */
-        height: 2.5em; /* Adjust height for mobile */
+        width: 85%;
+        font-size: 1.5em;
+        height: 2.5em;
     }
 
     #match-button {
-        font-size: 1.5em; /* Adjust button font size for mobile */
-        width: 2.5em; /* Adjust width for mobile */
-        height: 2.5em; /* Adjust height for mobile */
-        margin-left: 5px; /* Adjust margin for mobile */
+        font-size: 1.5em;
+        width: 2.5em;
+        height: 2.5em;
+        margin-left: 5px;
     }
 }
