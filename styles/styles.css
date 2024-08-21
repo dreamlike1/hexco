@@ -50,12 +50,12 @@ body {
 .input-wrapper input {
     color: #ECDFCC;
     background-color: #3C3D37;
-    border-radius: 50px;
-    padding: 0.5em 1em; /* Adjust padding */
-    width: 7.5em; /* Width of the input field */
-    height: 3.5em; /* Adjusted height to match button */
+    border-radius: 50px; /* Rounded edges */
+    padding: 0 1em; /* Adjust padding for horizontal spacing */
+    width: 7em; /* Adjust width to fit the new height */
+    height: 3em; /* Adjusted height */
     font-family: Menlo, monospace;
-    font-size: 2.5em; /* Adjust font size for a smaller input */
+    font-size: 2em; /* Adjust font size to match the new height */
     text-align: center; /* Center text horizontally */
     text-transform: uppercase; /* Transform text to uppercase */
     box-sizing: border-box;
@@ -68,7 +68,7 @@ body {
 .input-wrapper input::before {
     content: "#";
     color: #ECDFCC;
-    font-size: 2.5em; /* Adjust font size for the # symbol */
+    font-size: 2em; /* Adjust font size for the # symbol */
     position: absolute;
     left: 0; /* Position flush against the left edge */
     top: 50%;
@@ -81,11 +81,11 @@ body {
     background-color: #3C3D37;
     color: #ECDFCC;
     border: none;
-    border-radius: 50px;
-    width: 3.5em; /* Match width with the input field */
-    height: 3.5em; /* Match height with input field */
+    border-radius: 50px; /* Rounded edges to match the input */
+    width: 3em; /* Adjust width to match input height */
+    height: 3em; /* Match height with input field */
     font-family: Menlo, monospace;
-    font-size: 2em; /* Font size for the arrow */
+    font-size: 1.8em; /* Font size for the arrow */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -133,14 +133,14 @@ body {
 
     .input-wrapper input {
         width: 85%; /* Adjust width to fit smaller screens and ensure no text cutoff */
-        font-size: 1.8em; /* Adjust font size for mobile */
-        height: 3em; /* Adjust height for mobile */
+        font-size: 1.5em; /* Adjust font size for mobile */
+        height: 2.5em; /* Adjust height for mobile */
     }
 
     #match-button {
         font-size: 1.5em; /* Adjust button font size for mobile */
-        width: 3em; /* Adjust width for mobile */
-        height: 3em; /* Adjust height for mobile */
+        width: 2.5em; /* Adjust width for mobile */
+        height: 2.5em; /* Adjust height for mobile */
         margin-left: 5px; /* Adjust margin for mobile */
     }
 }
