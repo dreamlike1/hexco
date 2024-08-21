@@ -43,11 +43,17 @@ body {
     color: #ECDFCC;
     border: none;
     border-radius: 50px;
-    padding: 0.5em 1em;
+    padding: 0; /* No padding, as we'll set dimensions directly */
+    width: 7.5em; /* Match width with input field */
+    height: 7.5em; /* Match height with input field */
     font-family: Menlo, monospace;
-    font-size: 1.5em;
+    font-size: 3em; /* Font size to fit the arrow */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     margin-right: 10px; /* Space between button and input */
+    line-height: 1; /* Center the arrow vertically */
 }
 
 #match-button:hover {
@@ -130,6 +136,8 @@ body {
     }
 
     #match-button {
-        font-size: 1em; /* Adjust button font size for mobile */
+        font-size: 2em; /* Adjust button font size for mobile */
+        width: 6em; /* Adjust width for mobile */
+        height: 6em; /* Adjust height for mobile */
     }
 }
