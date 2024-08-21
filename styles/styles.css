@@ -1,0 +1,45 @@
+body {
+    background-color: #1E201E;
+    color: #ECDFCC;
+    font-family: Menlo, monospace;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+}
+
+.squares {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.square {
+    background-color: #3C3D37;
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+    display: inline-block;
+}
+
+.input-container {
+    display: flex;
+    justify-content: center;
+}
+
+.ui.input input {
+    border: 1px solid #697565;
+    color: #ECDFCC;
+    background-color: #3C3D37;
+    border-radius: 15px;
+    padding: 10px;
+    width: 250px;
+    font-family: Menlo, monospace; /* Ensure Menlo is used in the input */
+}
