@@ -1,7 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Main script loaded.');
-    
-    setupColorChange();
+
+    // Load the randomColor.js script
+    loadScript('js/randomColor.js')
+        .then(() => {
+            if (typeof setRandomColor === 'function') {
+                setRandomColor(); // Set a random color for the left square
+            } else {
+                console.error('setRandomColor function is not available.');
+            }
+        })
+        .catch(error => {
+            console.error('Error loading randomColor.js:', error);
+        });
+
+    setupColorChange(); // Set up the color input change handler
 });
 
 function setupColorChange() {
@@ -14,19 +27,26 @@ function setupColorChange() {
     }
 
     colorInput.addEventListener('input', () => {
-        // Get the value from the input and ensure it's trimmed
         let hexColor = colorInput.value.trim();
 
-        // If the value starts with "#", remove it
         if (hexColor.startsWith('#')) {
             hexColor = hexColor.slice(1);
         }
 
-        // Validate the HEX code format (6 hexadecimal digits)
         if (/^[0-9A-Fa-f]{6}$/.test(hexColor)) {
             rightSquare.style.backgroundColor = `#${hexColor}`;
         } else {
-            rightSquare.style.backgroundColor = '#3C3D37'; // Default color if invalid HEX code
+            rightSquare.style.backgroundColor = '#3C3D37';
         }
+    });
+}
+
+function loadScript(src) {
+    return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
+        document.head.appendChild(script);
     });
 }
