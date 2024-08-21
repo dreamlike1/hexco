@@ -2,7 +2,6 @@ let leftColor = ''; // Holds the color of the left square
 let tries = 0; // Counter for the number of tries
 const maxTries = 5; // Maximum number of tries
 const messageElement = document.getElementById('match-message'); // Message element
-const historyList = []; // Array to store history of tries
 
 function setupMatchButton() {
     const matchButton = document.getElementById('match-button');
@@ -29,9 +28,6 @@ function setupMatchButton() {
         }
 
         userColor = userColor.toUpperCase();
-        // Update history
-        historyList.push(userColor);
-        updateHistoryDisplay();
 
         // Check if the user's color matches the left square's color
         if (userColor === leftColor.toUpperCase()) {
@@ -81,26 +77,9 @@ function provideColorFeedback(inputColor, targetColor) {
     messageElement.innerHTML += `<br>[${colorFeedback}]`;
 }
 
-// Update the display of the history of tries
-function updateHistoryDisplay() {
-    const historyElement = document.createElement('div');
-    historyElement.classList.add('history');
-    historyElement.innerHTML = historyList.map((color, index) => {
-        return `${index + 1}. [${color}] - ${tries}/${maxTries}`;
-    }).join('<br>');
-    if (messageElement.nextSibling) {
-        messageElement.nextSibling.remove(); // Remove previous history display
-    }
-    messageElement.parentNode.appendChild(historyElement);
-}
-
 // Reset the game
 function resetGame() {
     tries = 0;
-    historyList.length = 0; // Clear the history
-    if (messageElement.nextSibling) {
-        messageElement.nextSibling.remove(); // Remove history display
-    }
     // Load a new random color for the left square
     setRandomColor();
 }
