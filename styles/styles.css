@@ -55,6 +55,7 @@ body {
     font-family: Menlo, monospace;
     font-size: 3em;
     text-align: center; /* Center text horizontally */
+    text-transform: uppercase; /* Transform text to uppercase */
     box-sizing: border-box;
     border: none; /* Remove border */
     outline: none; /* Remove default focus outline */
