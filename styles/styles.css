@@ -44,7 +44,9 @@ body {
     padding: 15px 30px; /* Increased padding for larger input box */
     width: 156px; /* 30% of the original width (520px) */
     font-family: Menlo, monospace;
-    font-size: 1.5em; /* Increase font size to 150% of the current size */
+    font-size: 2.1em; /* Increase font size to 40% larger than 1.5em */
+    text-align: center; /* Center the text horizontally */
+    text-transform: uppercase; /* Transform text to uppercase */
     box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
     border: none; /* Remove border */
     outline: none; /* Remove default focus outline */
@@ -79,6 +81,6 @@ body {
     .ui.input input {
         width: 90%; /* Adjust width to fit smaller screens */
         padding: 12px 24px; /* Adjust padding for mobile */
-        font-size: 1.5em; /* Ensure increased font size is maintained */
+        font-size: 2.1em; /* Ensure increased font size is maintained */
     }
 }
