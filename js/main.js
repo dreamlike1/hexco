@@ -3,14 +3,17 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Main script loaded.');
     
-    // Initialize all functionalities
     setupColorChange();
 });
 
-// Function to handle color change for the right square
 function setupColorChange() {
     const colorInput = document.getElementById('color-input');
     const rightSquare = document.getElementById('right-square');
+
+    if (!colorInput || !rightSquare) {
+        console.error('Elements not found.');
+        return;
+    }
 
     colorInput.addEventListener('input', () => {
         const hexColor = colorInput.value.trim();
