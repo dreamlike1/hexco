@@ -63,7 +63,7 @@ body {
     background-color: #3C3D37;
     border-radius: 50px; /* Increased border-radius for more rounded corners */
     padding: 0.5em 1em 0.5em 2em; /* Adjust left padding to accommodate the prefix while keeping it close */
-    width: 7em; /* Reduced width from 8em to 7em */
+    width: 7.5em; /* Slightly increased width for better text fit */
     font-family: Menlo, monospace;
     font-size: 3em; /* Adjusted font size for better readability */
     text-align: left; /* Align text to the left */
@@ -100,7 +100,7 @@ body {
     }
 
     .input-wrapper input {
-        width: 80%; /* Adjust width to fit smaller screens */
+        width: 85%; /* Adjust width to fit smaller screens and ensure no text cutoff */
         padding: 0.5em 1em 0.5em 2em; /* Adjust padding for mobile */
         font-size: 3em; /* Ensure font size is appropriate for mobile */
     }
