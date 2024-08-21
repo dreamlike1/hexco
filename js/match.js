@@ -1,4 +1,3 @@
-let leftColor = ''; // Holds the color of the left square
 let tries = 0; // Counter for the number of tries
 const maxTries = 5; // Maximum number of tries
 const messageElement = document.getElementById('match-message'); // Message element
@@ -29,7 +28,8 @@ function setupMatchButton() {
         updateHistoryDisplay();
 
         // Check if the user's color matches the left square's color
-        if (userColor.toUpperCase() === leftColor.toUpperCase()) {
+        const leftColor = document.getElementById('left-square').style.backgroundColor.slice(1).toUpperCase();
+        if (userColor.toUpperCase() === leftColor) {
             messageElement.textContent = `${userColor} is a match!`;
             resetGame(); // Reset the game after a match
         } else {
@@ -99,12 +99,6 @@ function resetGame() {
     }
     // Load a new random color for the left square
     setRandomColor();
-}
-
-function setRandomColor() {
-    const colors = '0123456789ABCDEF';
-    leftColor = '#' + Array.from({ length: 6 }, () => colors[Math.floor(Math.random() * 16)]).join('');
-    document.getElementById('left-square').style.backgroundColor = leftColor;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
