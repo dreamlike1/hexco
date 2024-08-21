@@ -48,17 +48,6 @@ body {
     box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
 }
 
-.input-wrapper::before {
-    content: "#";
-    color: #ECDFCC; /* Set the text color to match the input's text color */
-    font-size: 3em; /* Adjust font size to match the input text size */
-    position: absolute;
-    left: 0.5em; /* Adjust to fit the input box */
-    top: 50%; /* Center vertically within the input */
-    transform: translateY(-50%); /* Adjust for vertical centering */
-    pointer-events: none; /* Ensure the prefix doesn't block user interaction with the input */
-}
-
 .input-wrapper input {
     color: #ECDFCC; /* Set the text color to match the body's text color */
     background-color: #3C3D37;
@@ -73,6 +62,18 @@ body {
     border: none; /* Remove border */
     outline: none; /* Remove default focus outline */
     box-shadow: none; /* Remove default focus box-shadow */
+    position: relative;
+}
+
+.input-wrapper input::before {
+    content: "#";
+    color: #ECDFCC; /* Set the text color to match the input's text color */
+    font-size: 3em; /* Adjust font size to match the input text size */
+    position: absolute;
+    left: 0.5em; /* Adjust to fit the input box */
+    top: 50%; /* Center vertically within the input */
+    transform: translateY(-50%); /* Adjust for vertical centering */
+    pointer-events: none; /* Ensure the prefix doesn't block user interaction with the input */
 }
 
 /* Override Fomantic UI focus styles */
