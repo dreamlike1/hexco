@@ -52,7 +52,7 @@ body {
     color: #ECDFCC; /* Set the text color to match the body's text color */
     background-color: #3C3D37;
     border-radius: 50px; /* Increased border-radius for more rounded corners */
-    padding: 0.5em 1em 0.5em 2.5em; /* Adjust left padding to accommodate the # symbol */
+    padding: 0.5em 1em 0.5em 3em; /* Adjust left padding to accommodate the # symbol */
     width: 7.5em; /* Slightly increased width for better text fit */
     font-family: Menlo, monospace;
     font-size: 3em; /* Adjusted font size for better readability */
@@ -69,10 +69,11 @@ body {
     color: #ECDFCC; /* Set the text color to match the input's text color */
     font-size: 3em; /* Adjust font size to match the input text size */
     position: absolute;
-    left: 0.5em; /* Adjust to fit the input box */
+    left: 0.75em; /* Adjusted left position to align with the input padding */
     top: 50%; /* Center vertically within the input */
     transform: translateY(-50%); /* Adjust for vertical centering */
     pointer-events: none; /* Ensure the prefix doesn't block user interaction with the input */
+    z-index: 1; /* Ensure the # symbol appears above the text */
 }
 
 /* Override Fomantic UI focus styles */
@@ -102,7 +103,7 @@ body {
 
     .input-wrapper input {
         width: 85%; /* Adjust width to fit smaller screens and ensure no text cutoff */
-        padding: 0.5em 1em 0.5em 2.5em; /* Adjust padding for mobile */
+        padding: 0.5em 1em 0.5em 3em; /* Adjust padding for mobile */
         font-size: 2em; /* Ensure font size is appropriate for mobile */
     }
 }
