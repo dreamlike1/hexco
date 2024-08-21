@@ -1,7 +1,5 @@
-// randomColor.js
 function setRandomColor() {
     const leftSquare = document.getElementById('left-square');
-
     if (!leftSquare) {
         console.error('Left square not found.');
         return;
