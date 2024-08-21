@@ -1,69 +1,9 @@
-body {
-    background-color: #1E201E;
-    color: #ECDFCC;
-    font-family: Menlo, monospace;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    overflow: hidden;
-}
-
-.container {
-    text-align: center;
-    width: 60%; /* 60% of the viewport width */
-    max-width: 960px; /* Increased max-width for larger content */
-}
-
-.squares {
-    display: flex;
-    justify-content: center;
-    gap: 32px; /* Increased gap for larger size */
-    margin-bottom: 32px; /* Increased margin for larger size */
-}
-
-.square {
-    background-color: #3C3D37;
-    width: 320px; /* 60% larger than 100px */
-    height: 320px; /* 60% larger than 100px */
-    border-radius: 24px; /* Increased border-radius to match the larger size */
-    display: inline-block;
-}
-
-.input-container {
-    display: flex;
-    justify-content: center;
-}
-
-.input-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    background-color: #3C3D37;
-    border-radius: 50px; /* Increased border-radius for more rounded corners */
-    padding: 0.5em; /* Adjust padding to ensure proper spacing */
-    width: fit-content;
-    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
-}
-
-.prefix {
-    color: #ECDFCC; /* Set the text color to match the input's text color */
-    font-size: 3em; /* Adjust font size to match the input text size */
-    position: absolute;
-    left: 1.25em; /* Move the prefix closer to the text */
-    top: 50%; /* Center vertically within the input */
-    transform: translateY(-50%); /* Adjust for vertical centering */
-    pointer-events: none; /* Ensure the prefix doesn't block user interaction with the input */
-}
-
 .input-wrapper input {
     color: #ECDFCC; /* Set the text color to match the body's text color */
     background-color: #3C3D37;
     border-radius: 50px; /* Increased border-radius for more rounded corners */
     padding: 0.5em 1em 0.5em 2em; /* Adjust left padding to accommodate the prefix while keeping it close */
-    width: 8em; /* 20% less than 10em */
+    width: 7em; /* Reduced width from 8em to 7em */
     font-family: Menlo, monospace;
     font-size: 3em; /* Adjusted font size for better readability */
     text-align: left; /* Align text to the left */
@@ -71,14 +11,6 @@ body {
     box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
     border: none; /* Remove border */
     outline: none; /* Remove default focus outline */
-    box-shadow: none; /* Remove default focus box-shadow */
-}
-
-/* Override Fomantic UI focus styles */
-.input-wrapper input:focus {
-    background-color: #3C3D37; /* Keep the background color the same */
-    color: #ECDFCC; /* Ensure text color remains consistent */
-    border: none; /* Remove border */
     box-shadow: none; /* Remove default focus box-shadow */
 }
 
@@ -100,7 +32,7 @@ body {
     }
 
     .input-wrapper input {
-        width: 90%; /* Adjust width to fit smaller screens */
+        width: 80%; /* Adjust width to fit smaller screens */
         padding: 0.5em 1em 0.5em 2em; /* Adjust padding for mobile */
         font-size: 3em; /* Ensure font size is appropriate for mobile */
     }
