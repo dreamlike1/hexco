@@ -2,6 +2,7 @@ let leftColor = ''; // Holds the color of the left square
 let tries = 0; // Counter for the number of tries
 const maxTries = 5; // Maximum number of tries
 const messageElement = document.getElementById('match-message'); // Message element
+let easyMode = false; // Track if the game is in easy mode
 
 function setupMatchButton() {
     const matchButton = document.getElementById('match-button');
@@ -38,7 +39,18 @@ function handleMatch() {
     if (userColor.startsWith('#')) {
         userColor = userColor.slice(1);
     }
-    
+
+    // Check for special commands
+    if (userColor.toLowerCase() === 'easy') {
+        setEasyMode(true);
+        colorInput.value = ''; // Clear input after command
+        return;
+    } else if (userColor.toLowerCase() === 'back') {
+        setEasyMode(false);
+        colorInput.value = ''; // Clear input after command
+        return;
+    }
+
     if (!/^[0-9A-Fa-f]{6}$/.test(userColor)) {
         alert('Please enter a valid HEX color code.');
         return;
@@ -91,17 +103,32 @@ function provideColorFeedback(inputColor, targetColor) {
     messageElement.innerHTML += `<br>[${colorFeedback}]`;
 }
 
+// Set the color of the left square based on the mode
+function setRandomColor() {
+    const colors = '0123456789ABCDEF';
+    let color;
+    if (easyMode) {
+        // Generate "easier" colors
+        color = '#' + Array.from({ length: 6 }, () => colors[Math.floor(Math.random() * 6)]).join('');
+    } else {
+        // Standard color generation
+        color = '#' + Array.from({ length: 6 }, () => colors[Math.floor(Math.random() * 16)]).join('');
+    }
+    leftColor = color;
+    document.getElementById('left-square').style.backgroundColor = leftColor;
+}
+
+// Toggle easy mode
+function setEasyMode(isEasy) {
+    easyMode = isEasy;
+    setRandomColor(); // Set a new random color when toggling modes
+}
+
 // Reset the game
 function resetGame() {
     tries = 0;
     // Load a new random color for the left square
     setRandomColor();
-}
-
-function setRandomColor() {
-    const colors = '0123456789ABCDEF';
-    leftColor = '#' + Array.from({ length: 6 }, () => colors[Math.floor(Math.random() * 16)]).join('');
-    document.getElementById('left-square').style.backgroundColor = leftColor;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
