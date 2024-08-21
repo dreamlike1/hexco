@@ -52,7 +52,7 @@ body {
     color: #ECDFCC; /* Set the text color to match the input's text color */
     font-size: 3em; /* Adjust font size to match the input text size */
     position: absolute;
-    left: 1.25em; /* Move the prefix closer to the text */
+    left: 0.5em; /* Position prefix very close to the text */
     top: 50%; /* Center vertically within the input */
     transform: translateY(-50%); /* Adjust for vertical centering */
     pointer-events: none; /* Ensure the prefix doesn't block user interaction with the input */
@@ -66,7 +66,7 @@ body {
     width: 8em; /* 20% less than 10em */
     font-family: Menlo, monospace;
     font-size: 3em; /* Adjusted font size for better readability */
-    text-align: left; /* Align text to the left */
+    text-align: center; /* Center the text horizontally */
     text-transform: uppercase; /* Transform text to uppercase */
     box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
     border: none; /* Remove border */
