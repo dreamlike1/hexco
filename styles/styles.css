@@ -34,8 +34,8 @@ body {
 
 .input-container {
     display: flex;
-    justify-content: center;
     align-items: center; /* Align items vertically */
+    justify-content: center; /* Center items horizontally */
 }
 
 #match-button {
@@ -43,18 +43,17 @@ body {
     color: #ECDFCC;
     border: none;
     border-radius: 50px;
-    padding: 0; /* No padding, as we'll set dimensions directly */
-    width: 4em; /* Adjusted width to fit with the input field */
-    height: 4em; /* Match height with input field */
+    width: 4em; /* Width of the button */
+    height: 4em; /* Height of the button to match the input */
     font-family: Menlo, monospace;
-    font-size: 2em; /* Font size for arrow */
+    font-size: 2em; /* Font size for the arrow */
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    margin-left: 10px; /* Space between button and input */
+    margin-left: 10px; /* 10px space between the button and the input field */
     line-height: 1; /* Center the arrow vertically */
-    transform: rotate(90deg); /* Rotate the arrow to point right */
+    transform: rotate(0deg); /* Arrow pointing right */
 }
 
 #match-button:hover {
@@ -63,10 +62,10 @@ body {
 
 .input-wrapper {
     position: relative;
-    display: inline-block;
+    display: inline-flex; /* Use inline-flex to align button and input field properly */
+    align-items: center; /* Align items vertically */
     background-color: #3C3D37;
     border-radius: 50px;
-    width: fit-content;
     box-sizing: border-box;
 }
 
@@ -74,8 +73,8 @@ body {
     color: #ECDFCC;
     background-color: #3C3D37;
     border-radius: 50px;
-    padding: 0.5em 1em 0.5em 1em; /* Padding without extra space on the left */
-    width: 7.5em; /* Adjust width as needed */
+    padding: 0.5em 1em; /* Padding without extra space on the left */
+    width: 7.5em; /* Width of the input field */
     font-family: Menlo, monospace;
     font-size: 3em;
     text-align: center; /* Center text horizontally */
