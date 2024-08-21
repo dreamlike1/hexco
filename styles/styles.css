@@ -51,7 +51,6 @@ body {
 /* Override Fomantic UI focus styles */
 .ui.input input:focus {
     background-color: #3C3D37; /* Keep the background color the same */
-    border: 1px solid #697565; /* Keep the border color the same */
     outline: none; /* Remove default focus outline */
     box-shadow: none; /* Remove default focus box-shadow */
 }
