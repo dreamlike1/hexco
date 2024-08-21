@@ -50,8 +50,8 @@ body {
     color: #ECDFCC;
     background-color: #3C3D37;
     border-radius: 50px;
-    padding: 0; /* No padding inside the input field */
-    width: 7.5em; /* Adjust as needed */
+    padding: 0.5em 1em 0.5em 2.5em; /* Top, Right, Bottom, Left with padding on the left for space */
+    width: 7.5em; /* Adjust width as needed */
     font-family: Menlo, monospace;
     font-size: 3em;
     text-align: center; /* Center text horizontally */
@@ -60,7 +60,6 @@ body {
     outline: none; /* Remove default focus outline */
     box-shadow: none; /* Remove default focus box-shadow */
     position: relative;
-    padding-left: 3em; /* Reserve space for the # symbol */
 }
 
 .input-wrapper input::before {
@@ -102,7 +101,6 @@ body {
 
     .input-wrapper input {
         width: 85%; /* Adjust width to fit smaller screens and ensure no text cutoff */
-        padding-left: 3em; /* Ensure space for the # symbol */
         font-size: 2em; /* Adjust font size for mobile */
     }
 }
