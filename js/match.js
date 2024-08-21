@@ -30,8 +30,8 @@ function setupMatchButton() {
         userColor = userColor.toUpperCase();
 
         // Check if the user's color matches the left square's color
-        if (userColor === leftColor.toUpperCase()) {
-            messageElement.textContent = `${userColor} is a match!`;
+        if (userColor === leftColor.substring(1).toUpperCase()) {
+            messageElement.textContent = `#${userColor} is a match!`;
             resetGame(); // Reset the game after a match
         } else {
             tries++;
@@ -39,8 +39,8 @@ function setupMatchButton() {
                 messageElement.textContent = `No more tries left! The correct color was ${leftColor}.`;
                 resetGame(); // Reset the game after max tries
             } else {
-                messageElement.textContent = `${userColor} - ${maxTries - tries} tries left`;
-                provideColorFeedback(userColor, leftColor);
+                messageElement.textContent = `#${userColor} - ${maxTries - tries} tries left`;
+                provideColorFeedback(userColor, leftColor.substring(1)); // Remove '#' for comparison
             }
         }
     });
