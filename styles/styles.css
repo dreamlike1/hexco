@@ -39,12 +39,12 @@ body {
 }
 
 .input-wrapper {
-    position: relative;
     display: flex; /* Use flex to align button and input field properly */
     align-items: center; /* Align items vertically */
     background-color: #3C3D37;
     border-radius: 50px;
     box-sizing: border-box;
+    position: relative;
 }
 
 .input-wrapper input {
@@ -53,6 +53,7 @@ body {
     border-radius: 50px;
     padding: 0.5em 1em; /* Padding without extra space on the left */
     width: 7.5em; /* Width of the input field */
+    height: 4em; /* Height to match the button */
     font-family: Menlo, monospace;
     font-size: 3em;
     text-align: center; /* Center text horizontally */
@@ -89,7 +90,7 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    margin-left: 7px; /* 10px space between the button and the input field */
+    margin-left: 10px; /* 10px space between the button and the input field */
     line-height: 1; /* Center the arrow vertically */
     transform: rotate(90deg); /* Rotate the arrow to point right */
 }
