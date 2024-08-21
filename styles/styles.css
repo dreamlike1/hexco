@@ -44,16 +44,17 @@ body {
     border: none;
     border-radius: 50px;
     padding: 0; /* No padding, as we'll set dimensions directly */
-    width: 7.5em; /* Match width with input field */
-    height: 7.5em; /* Match height with input field */
+    width: 4em; /* Adjusted width to fit with the input field */
+    height: 4em; /* Match height with input field */
     font-family: Menlo, monospace;
-    font-size: 3em; /* Font size to fit the arrow */
+    font-size: 2em; /* Font size for arrow */
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    margin-right: 10px; /* Space between button and input */
+    margin-left: 10px; /* Space between button and input */
     line-height: 1; /* Center the arrow vertically */
+    transform: rotate(90deg); /* Rotate the arrow to point right */
 }
 
 #match-button:hover {
@@ -136,8 +137,8 @@ body {
     }
 
     #match-button {
-        font-size: 2em; /* Adjust button font size for mobile */
-        width: 6em; /* Adjust width for mobile */
-        height: 6em; /* Adjust height for mobile */
+        font-size: 1.5em; /* Adjust button font size for mobile */
+        width: 3em; /* Adjust width for mobile */
+        height: 3em; /* Adjust height for mobile */
     }
 }
