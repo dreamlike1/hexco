@@ -1,65 +1,113 @@
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('Main script loaded.');
+let leftColor = ''; // Holds the color of the left square
+let tries = 0; // Counter for the number of tries
+const maxTries = 5; // Maximum number of tries
+const messageElement = document.getElementById('match-message'); // Message element
+const historyList = []; // Array to store history of tries
 
-    // Load the randomColor.js script
-    loadScript('js/randomColor.js')
-        .then(() => {
-            if (typeof setRandomColor === 'function') {
-                setRandomColor(); // Set a random color for the left square
+function setupMatchButton() {
+    const matchButton = document.getElementById('match-button');
+    if (!matchButton) {
+        console.error('Match button not found.');
+        return;
+    }
+    
+    matchButton.addEventListener('click', () => {
+        const colorInput = document.getElementById('color-input');
+        if (!colorInput) {
+            console.error('Color input not found.');
+            return;
+        }
+        
+        const userColor = colorInput.value.trim();
+        if (!/^[0-9A-Fa-f]{6}$/.test(userColor)) {
+            alert('Please enter a valid HEX color code.');
+            return;
+        }
+
+        // Update history
+        historyList.push(userColor);
+        updateHistoryDisplay();
+
+        // Check if the user's color matches the left square's color
+        if (userColor.toUpperCase() === leftColor.toUpperCase()) {
+            messageElement.textContent = `${userColor} is a match!`;
+            resetGame(); // Reset the game after a match
+        } else {
+            tries++;
+            if (tries >= maxTries) {
+                messageElement.textContent = `No more tries left! The correct color was ${leftColor}.`;
+                resetGame(); // Reset the game after max tries
             } else {
-                console.error('setRandomColor function is not available.');
+                messageElement.textContent = `${userColor} - ${maxTries - tries} tries left`;
+                provideColorFeedback(userColor, leftColor);
             }
-        })
-        .catch(error => {
-            console.error('Error loading randomColor.js:', error);
-        });
+        }
+    });
+}
 
-    // Load the match.js script
-    loadScript('js/match.js')
-        .then(() => {
-            if (typeof setupMatchButton === 'function') {
-                setupMatchButton(); // Set up the match button
-            } else {
-                console.error('setupMatchButton function is not available.');
-            }
-        })
-        .catch(error => {
-            console.error('Error loading match.js:', error);
-        });
+// Provide color feedback based on proximity to the correct color
+function provideColorFeedback(inputColor, targetColor) {
+    const inputColorArray = inputColor.match(/.{1,2}/g).map(hex => parseInt(hex, 16));
+    const targetColorArray = targetColor.match(/.{1,2}/g).map(hex => parseInt(hex, 16));
 
-    setupColorChange(); // Set up the color input change handler
-});
+    let colorDistance = 0;
+    let colorFeedback = '';
 
-function setupColorChange() {
+    inputColorArray.forEach((value, index) => {
+        const diff = Math.abs(value - targetColorArray[index]);
+        colorDistance += diff;
+        const color = diff === 0 ? 'green' : (diff < 32 ? 'yellow' : 'orange');
+        colorFeedback += `<span style="color: ${color};">${inputColor[index * 2]}${inputColor[index * 2 + 1]}</span>`;
+    });
+
+    messageElement.innerHTML += `<br>${colorFeedback}`;
+    setInputColorFeedback(colorDistance);
+}
+
+// Set the color of the input field based on distance from the target color
+function setInputColorFeedback(colorDistance) {
     const colorInput = document.getElementById('color-input');
-    const rightSquare = document.getElementById('right-square');
-
-    if (!colorInput || !rightSquare) {
-        console.error('Elements not found.');
+    if (!colorInput) {
+        console.error('Color input not found.');
         return;
     }
 
-    colorInput.addEventListener('input', () => {
-        let hexColor = colorInput.value.trim();
+    const colorIntensity = Math.min((colorDistance / 3) * 5, 255); // Scale the distance to color intensity
+    const feedbackColor = `rgb(${colorIntensity}, ${255 - colorIntensity}, 0)`; // Yellow to green gradient
 
-        if (hexColor.startsWith('#')) {
-            hexColor = hexColor.slice(1);
-        }
-
-        if (/^[0-9A-Fa-f]{6}$/.test(hexColor)) {
-            rightSquare.style.backgroundColor = `#${hexColor}`;
-        } else {
-            rightSquare.style.backgroundColor = '#3C3D37';
-        }
-    });
+    colorInput.style.backgroundColor = feedbackColor;
 }
 
-function loadScript(src) {
-    return new Promise((resolve, reject) => {
-        const script = document.createElement('script');
-        script.src = src;
-        script.onload = () => resolve();
-        script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
-        document.head.appendChild(script);
-    });
+// Update the display of the history of tries
+function updateHistoryDisplay() {
+    const historyElement = document.createElement('div');
+    historyElement.classList.add('history');
+    historyElement.innerHTML = `<strong>Tries:</strong> ${historyList.join(', ')}`;
+    if (messageElement.nextSibling) {
+        messageElement.parentNode.insertBefore(historyElement, messageElement.nextSibling);
+    } else {
+        messageElement.parentNode.appendChild(historyElement);
+    }
 }
+
+// Reset the game
+function resetGame() {
+    tries = 0;
+    historyList.length = 0; // Clear the history
+    if (messageElement.nextSibling) {
+        messageElement.nextSibling.remove(); // Remove history display
+    }
+    // Load a new random color for the left square
+    setRandomColor();
+}
+
+function setRandomColor() {
+    const colors = '0123456789ABCDEF';
+    leftColor = '#' + Array.from({ length: 6 }, () => colors[Math.floor(Math.random() * 16)]).join('');
+    document.getElementById('left-square').style.backgroundColor = leftColor;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    setupMatchButton();
+    setRandomColor(); // Initialize the left square color
+});
