@@ -42,7 +42,7 @@ body {
     background-color: #3C3D37;
     border-radius: 24px; /* Increased border-radius for larger input box */
     padding: 15px 30px; /* Increased padding for larger input box */
-    width: 10em; /* Approximate width to fit 6 characters */
+    width: 8em; /* 20% less than 10em */
     font-family: Menlo, monospace;
     font-size: 2.1em; /* Increase font size to 40% larger than 1.5em */
     text-align: center; /* Center the text horizontally */
